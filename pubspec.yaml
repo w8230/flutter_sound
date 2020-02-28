@@ -1,0 +1,36 @@
+name: sound
+description: 사운드방음문 MES 모바일
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^0.1.2
+  http: ^0.12.0
+  shared_preferences: ^0.5.3+2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  fonts:
+    - family: NanumGothic
+      fonts:
+        - asset: fonts/NanumGothic-Regular.ttf
+    - family: NanumGothic Bold
+      fonts:
+        - asset: fonts/NanumGothic-Bold.ttf
+          weight: 700
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/logo/
+
