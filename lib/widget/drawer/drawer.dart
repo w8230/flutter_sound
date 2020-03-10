@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:sound/views/Certified/certified.dart';
 import 'package:sound/views/System/sysCommon/sysCommonList.dart';
 
-
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -63,13 +62,12 @@ class AppDrawer extends StatelessWidget {
       accountEmail: new Text("투비시스템 / 개발팀" , style: _textStyle()),
       decoration: new BoxDecoration(
         image: new DecorationImage(
-          image: new ExactAssetImage('assets/nav-menu-header-bg.jpg'),
+          image: new ExactAssetImage('assets/logo/drawer_header.jpg'),
           fit: BoxFit.cover,
         ),
       ),
       currentAccountPicture: CircleAvatar(
-          backgroundImage: NetworkImage(
-              "https://www.pngitem.com/pimgs/m/516-5167304_transparent-background-white-user-icon-png-png-download.png")),
+          backgroundImage: new ExactAssetImage('assets/logo/user.png')),
     );
   }
 

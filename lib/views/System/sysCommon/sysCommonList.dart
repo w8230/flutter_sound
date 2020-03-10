@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sound/widget/drawer/drawer.dart';
 
 class SysCommonList extends StatelessWidget {
   static const String _title = '공통코드 관리';
@@ -56,6 +57,7 @@ class _SysCommonListBody extends State<SysCommonListBody> {
   Widget build(BuildContext context) {
     _width = MediaQuery.of(context).size.width;
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(title: txtStyle_13('공통코드 관리')),
       body: Column(
         children: <Widget>[
@@ -67,7 +69,6 @@ class _SysCommonListBody extends State<SysCommonListBody> {
       ),
     );
   }
-
 
   dbInfoArea() {
     customRow(String head, String body) {

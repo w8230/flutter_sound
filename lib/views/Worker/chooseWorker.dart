@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sound/views/Worker/chooseWorker.dart';
+import 'package:sound/views/System/sysCommon/sysCommonList.dart';
 import 'package:sound/http/httpHandler.dart';
 import 'package:sound/data/shared/sharedPreferencesData.dart';
 
-class Certified extends StatelessWidget {
+class ChooseWorker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,40 +12,22 @@ class Certified extends StatelessWidget {
         brightness: Brightness.light,
         primaryColor: Colors.indigo,
       ),
-      home: CertifiedBody(),
+      home: ChooseWorkerBody(),
     );
   }
 }
 
-class CertifiedBody extends StatefulWidget {
-  CertifiedBody({Key key}) : super(key: key);
+class ChooseWorkerBody extends StatefulWidget {
+  ChooseWorkerBody({Key key}) : super(key: key);
 
   @override
-  _CertifiedBody createState() => _CertifiedBody();
+  _ChooseWorkerBody createState() => _ChooseWorkerBody();
 }
 
-class _CertifiedBody extends State<CertifiedBody> {
+class _ChooseWorkerBody extends State<ChooseWorkerBody> {
   final GlobalKey<FormState> _formKey = new GlobalKey<FormState>();
   String _key;
-
-  // 인증여부
-  @override
-  void initState() {
-    super.initState();
-    chkPrefs().then((bool rs){
-      if(rs == true){
-        print('카운터 : ' + rs.toString());
-        _loadCounter();
-      } else {
-        print('false');
-      }
-    });
-  }
-
-  Widget _loadCounter() {
-    Navigator.pop(context);
-    Navigator.push(context, new MaterialPageRoute(builder: (context) => ChooseWorker()));
-  }
+  String dropdownValue = 'One';
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +68,7 @@ class _CertifiedBody extends State<CertifiedBody> {
       validator: (value) => value.isEmpty ? '공란을 입력해주세요.' : null,
     );
 
+
     Widget _logo() {
       return new Hero(
         tag: 'logo1',
@@ -115,7 +98,7 @@ class _CertifiedBody extends State<CertifiedBody> {
             color: Colors.white,
           ),
           Text(
-            ' App Key 인증',
+            ' App Key 인1111증',
             style: TextStyle(
               fontSize: 15.0,
             ),
@@ -132,12 +115,41 @@ class _CertifiedBody extends State<CertifiedBody> {
               setPrefs();
               Navigator.pop(context);
               Navigator.push(context,
-                  new MaterialPageRoute(builder: (context) => ChooseWorker()));
+                  new MaterialPageRoute(builder: (context) => SysCommonList()));
             }
           });
         }
       },
     );
+
+
+    final _dropBox = DropdownButton<String>(
+          value: dropdownValue,
+          icon: Icon(Icons.arrow_downward),
+          iconSize: 24,
+          elevation: 16,
+          style: TextStyle(
+          color: Colors.deepPurple
+        ),
+        underline: Container(
+          height: 2,
+          color: Colors.deepPurpleAccent,
+        ),
+        onChanged: (String newValue) {
+            setState(() {
+            dropdownValue = newValue;
+          });
+        },
+        items: <String>['One', 'Two', 'Free', 'Four']
+        .map<DropdownMenuItem<String>>((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: Text(value),
+          );
+        })
+      .toList(),
+    );
+
 
     Widget _bottomText() {
       return Align(
@@ -153,23 +165,23 @@ class _CertifiedBody extends State<CertifiedBody> {
     }
 
     return new Scaffold(
-        body: new Center(
-          child: new Form(
-            key: this._formKey,
-            child: new ListView(
-              padding: EdgeInsets.only(top: 150.0, left: 24.0, right: 24.0),
-              children: <Widget>[
-                _logo(),
-                SizedBox(height: 100.0),
-                _keyInput,
-                SizedBox(height: 50.0),
-                _loginBtn,
-                SizedBox(height: 50.0),
-                _bottomText()
-              ],
-            ),
+      body: new Center(
+        child: new Form(
+          key: this._formKey,
+          child: new ListView(
+            padding: EdgeInsets.only(top: 150.0, left: 24.0, right: 24.0),
+            children: <Widget>[
+              _logo(),
+              SizedBox(height: 100.0),
+              _dropBox,
+              SizedBox(height: 50.0),
+              _loginBtn,
+              SizedBox(height: 50.0),
+              _bottomText()
+            ],
           ),
         ),
+      ),
     );
   }
 }

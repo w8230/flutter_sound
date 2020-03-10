@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
           primaryColor: Colors.blueGrey,
           fontFamily: 'NanumGothic'
       ),
-      routes:  routes,
+      routes : routes,
     );
   }
 }
